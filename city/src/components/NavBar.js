@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -16,6 +17,17 @@ const iconLayout = {
 
 
 class NavBar extends Component {
+    renderHeaderButton() {
+        switch (this.props.auth) {
+            case null:
+                return;
+            case false:
+               return <Button component={RouterLink} color="inherit" to="/login">Login</Button>;
+            default:
+                return <Button color="inherit" href="/api/logout">Logout AJAX</Button>
+        }
+    }
+
     render() {
         return (
             <div className="navigation">
@@ -43,7 +55,7 @@ class NavBar extends Component {
                                 </Button>
                             </Grid>
                             <Grid item>
-                                <Button component={RouterLink} color="inherit" to="/login">Login</Button>
+                                {this.renderHeaderButton()}
                             </Grid>
                         </Grid>
                     </Toolbar>
@@ -53,4 +65,8 @@ class NavBar extends Component {
     }
 }
 
-export default NavBar;
+function mapStateToProps(state) {
+    return {auth: state.auth};
+}
+
+export default connect(mapStateToProps)(NavBar);

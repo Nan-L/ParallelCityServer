@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as actions from './actions';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
@@ -8,6 +10,10 @@ import Login from './components/Login';
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -17,6 +23,7 @@ class App extends Component {
               <div>
                 <NavBar/>
                 <Switch>
+                  {/* <Route exact path="/" component={Front} /> */}
                   <Route exact path="/home" component={Home} />
                   <Route exact path="/about" component={About} />
                   <Route exact path="/login" component={Login} />
@@ -29,4 +36,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(null, actions)(App);
