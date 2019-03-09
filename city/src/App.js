@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
-import * as actions from './actions';
+import {fetchUser} from './actions';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import NavBar from './components/NavBar';
 import Home from './components/Home';
@@ -36,4 +36,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, actions)(App);
+export default connect(null, {fetchUser})(App);

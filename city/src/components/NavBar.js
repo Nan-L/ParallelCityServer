@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import {Link as RouterLink} from 'react-router-dom';
 import HomeIcon from '@material-ui/icons/HomeRounded';
 import InfoIcon from '@material-ui/icons/Info';
+import {logout} from "../actions/index";
 import '../styles/NavBar.css';
 import logo from '../asserts/images/logo.svg';
 
@@ -17,6 +18,10 @@ const iconLayout = {
 
 
 class NavBar extends Component {
+    logout() {
+        this.props.logout();
+    }
+
     renderHeaderButton() {
         switch (this.props.auth) {
             case null:
@@ -24,7 +29,7 @@ class NavBar extends Component {
             case false:
                return <Button component={RouterLink} color="inherit" to="/login">Login</Button>;
             default:
-                return <Button color="inherit" href="/api/logout">Logout AJAX</Button>
+                return <Button component={RouterLink} color="inherit" to="/home" onClick={this.logout.bind(this)}>Logout</Button>
         }
     }
 
@@ -69,4 +74,4 @@ function mapStateToProps(state) {
     return {auth: state.auth};
 }
 
-export default connect(mapStateToProps)(NavBar);
+export default connect(mapStateToProps, {logout})(NavBar);
