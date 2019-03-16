@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import Home from './components/Home';
 import About from './components/About';
 import Login from './components/Login';
+import Events from './components/Events';
 import './App.css';
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
                 <Switch>
                   {/* <Route exact path="/" component={Front} /> */}
                   <Route exact path="/home" component={Home} />
+                  <Route exact path="/events" component={Events} />
                   <Route exact path="/about" component={About} />
                   <Route exact path="/login" component={Login} />
                 </Switch>

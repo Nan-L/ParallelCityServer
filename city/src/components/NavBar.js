@@ -51,7 +51,7 @@ class NavBar extends Component {
                                 </Button>
                             </Grid>
                             <Grid item>
-                                <Button component={RouterLink} className="navButton" variant="contained" color="inherit" to="/event">Event</Button>
+                                <Button component={RouterLink} className="navButton" variant="contained" color="inherit" to="/events">Events</Button>
                             </Grid>
                             <Grid item style={{flexGrow: 1}}>
                                 <Button component={RouterLink} className="navButton" variant="contained" color="inherit" to="/about">
