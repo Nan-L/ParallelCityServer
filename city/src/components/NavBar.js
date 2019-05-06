@@ -29,7 +29,10 @@ class NavBar extends Component {
             case false:
                return <Button component={RouterLink} color="inherit" to="/login">Login</Button>;
             default:
-                return <Button component={RouterLink} color="inherit" to="/home" onClick={this.logout.bind(this)}>Logout</Button>
+                return [
+                  <Button component={RouterLink} color="inherit" to="/home" onClick={this.logout.bind(this)}>Logout</Button>,
+                  <Button component={RouterLink} color="inherit" to="/dashboard">Dashboard</Button>
+                ];
         }
     }
 
