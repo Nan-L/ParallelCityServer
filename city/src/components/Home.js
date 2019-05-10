@@ -16,7 +16,7 @@ class Home extends Component {
     return (
       <div className="home" style={backgroundStyle}>
         <Typography variant="h4" align="center" gutterBottom="true" style={{fontStyle: "italic", color: "#e1e1f4"}}>
-          Embrace the stunning view of the city of Vancouver
+          Embrace the stunning view of Vancouver
         </Typography>
       </div>
     )

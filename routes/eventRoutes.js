@@ -6,12 +6,12 @@ const Event = mongoose.model("events");
 
 module.exports = (app) => {
   app.post("/api/events", requireLogin, async (req, res) => {
-    const {title, author, desc, voters} = req.body;
+    const {eventTitle, eventDesc} = req.body;
     const event = new Event({
-      title: title,
-      author: author,
-      desc: desc,
-      voters: voters.split(',').map(nickname => {return {nickname: nickname.trim()}}),
+      title: eventTitle,
+      //author: author,
+      desc: eventDesc,
+     // voters: voters.split(',').map(nickname => {return {nickname: nickname.trim()}}),
       _user: req.user.id
     });
     try {

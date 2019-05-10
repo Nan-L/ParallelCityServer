@@ -14,3 +14,12 @@ export const logout = () => {
     dispatch({type: LOGOUT});
   }
 };
+
+export const createEvent = (values, history) => {
+  return async function(dispatch) {
+    console.log(values);
+    const res = await axios.post('/api/events', values);
+    history.push('/dashboard');
+    dispatch({type: FETCH_USER, payload: res.data});
+  }
+};
