@@ -24,6 +24,11 @@ module.exports = (app) => {
     }
   });
 
+  app.get("/api/events", requireLogin, async (req, res) => {
+    const events = await Event.find({_user: req.user.id});
+    res.send(events);
+  });
+
   app.get('/api/events/voted', (req, res) => {
     res.send('Thank you for voting!');
   })

@@ -1,6 +1,8 @@
 import axios from 'axios';
-import { FETCH_USER, LOGOUT } from "./types";
+import { FETCH_USER, LOGOUT, FETCH_USER_EVENTS } from "./types";
 
+
+// redux-thunk middleware allows dispatching actions after request has been served
 export const fetchUser = () => {
   return async function(dispatch) {
     const res = await axios.get('/api/current_user');
@@ -21,5 +23,12 @@ export const createEvent = (values, history) => {
     const res = await axios.post('/api/events', values);
     history.push('/dashboard');
     dispatch({type: FETCH_USER, payload: res.data});
+  }
+};
+
+export const fetchUserEvents = () => {
+  return async function(dispatch) {
+    const res = await axios.get('api/events');
+    dispatch({type: FETCH_USER_EVENTS, payload: res.data});
   }
 };
