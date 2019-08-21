@@ -20,7 +20,17 @@ export const logout = () => {
 export const createEvent = (values, history) => {
   return async function(dispatch) {
     console.log(values);
-    const res = await axios.post('/api/events', values);
+    const data = new FormData();
+    if (typeof values.eventImg !== 'string' && values.eventImg !== null) {
+      data.append('eventImg', values['eventImg']);
+    }
+    data.append('eventTitle', values['eventTitle']);
+    data.append('eventDesc', values['eventDesc']);
+    const res = await axios.post('/api/events', data, {
+      headers : {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
     history.push('/dashboard');
     dispatch({type: FETCH_USER, payload: res.data});
   }

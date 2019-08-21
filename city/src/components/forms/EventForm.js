@@ -4,6 +4,7 @@ import {Link as RouterLink} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import _ from 'lodash';
 import EventField from './EventField';
+import FileField from './FileField';
 import FIELDS from './formFields';
 
 class EventForm extends Component {
@@ -13,11 +14,16 @@ class EventForm extends Component {
     })
   }
 
+  renderFileField() {
+    return <Field component={FileField} type='file' label='Event Image' name='eventImg' />;
+  }
+
   render() {
     return (
       <div className="createEvent">
           <form onSubmit={this.props.handleSubmit(this.props.onEventSubmit)}>
             {this.renderFields()}
+            {this.renderFileField()}
             <Button component={RouterLink} color="inherit" to="/dashboard">Cancel</Button>
             <Button type="submit">Next</Button>
           </form>

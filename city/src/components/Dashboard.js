@@ -5,6 +5,7 @@ import {Link as RouterLink} from 'react-router-dom';
 import Button from "@material-ui/core/Button";
 import _ from 'lodash';
 import {fetchUserEvents} from "../actions";
+import EventDetail from "./EventDetail";
 
 
 class Dashboard extends Component {
@@ -12,19 +13,27 @@ class Dashboard extends Component {
     this.props.fetchUserEvents();
   }
 
+  renderEventArray() {
+    return _.map(this.props.events, ({_id, title, desc, startDate, img}) => {
+      return <EventDetail key={_id} title={title} desc={desc} startDate={startDate} img={img} />
+    })
+  }
+
   renderUserEvents() {
     switch (this.props.events) {
       case null:
         return <p>Loading Events...</p>;
       case false:
-        return [
-          // shouldn't return array?
-          <p key="text">You don't have ant event yet.</p>,
-          <Button key="create" component={RouterLink} color="inherit" to="/events/create">Create Your First Event</Button>
-        ];
+        return <React.Fragment>
+          <p>You don't have ant event yet.</p>,
+          <Button component={RouterLink} color="inherit" to="/events/create">Create Your First Event</Button>
+        </React.Fragment>;
       default:
         console.log(this.props.events);
-        return <p>Events:</p>;
+        return <React.Fragment>
+          {this.renderEventArray()}
+          <Button component={RouterLink} color="inherit" to="/events/create">Create New Event</Button>
+        </React.Fragment>;
     }
   }
 
